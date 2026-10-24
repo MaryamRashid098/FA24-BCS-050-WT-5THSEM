@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+  padding: 0;
+}
+
+.announcement-bar{
+    padding: 8px;
+}
+
+
+.top-header{
+    background-color: #eb3986;
+    width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.title-bar{
+    display: flex;
+}
+.shop-what{
+    display: flex;
+      gap: 40px;            /* space between items */
+  list-style: none;
+}
+.options{
+    display: flex;
+    gap: 20px;
+}
+.items-list{
+    display:flex;
+    gap: 35px;
+    
+}
+.items{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically (if nav has a fixed height) */
+    width: 100%
+}

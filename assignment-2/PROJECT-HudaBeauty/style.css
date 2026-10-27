@@ -237,9 +237,10 @@ ul { list-style: none; margin: 0; padding: 0; }
     align-items: stretch;
 }
 .p-card {
+    min-width: 0;
     border: 1px solid #dcdcdc;
     border-radius: 14px;
-    padding: 28px 22px 22px;
+    padding: 24px 20px 20px;
     display: flex;
     flex-direction: column;
 }
@@ -248,10 +249,11 @@ ul { list-style: none; margin: 0; padding: 0; }
     border: 1.5px solid #eb3986;
     color: #eb3986;
     border-radius: 999px;
-    padding: 3px 14px;
-    font-size: 19px;
+    padding: 2px 14px;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 1.2;
+    letter-spacing: -0.2px;
+    line-height: 1.3;
 }
 .p-img {
     height: 340px;

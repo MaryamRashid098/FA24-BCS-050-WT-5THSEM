@@ -216,15 +216,15 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 
 /* Tabs */
-.home-tabs { display: flex; gap: 60px; padding: 36px 0 28px; }
+.home-tabs { display: flex; gap: clamp(24px, 2.6vw, 48px); padding: clamp(18px, 1.8vw, 30px) 0 clamp(12px, 1.2vw, 20px); }
 .home-tab {
     background: none;
     border: 0;
     border-bottom: 3px solid transparent;
-    padding: 0 0 6px;
+    padding: 0 0 4px;
     font-family: 'Barlow Condensed', Arial, sans-serif;
-    font-size: 30px;
-    font-weight: 700;
+    font-size: clamp(18px, 1.5vw, 27px);
+    font-weight: 500;
     cursor: pointer;
 }
 .home-tab.active { color: #eb3986; border-bottom-color: #eb3986; }
@@ -232,97 +232,89 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* Card grid */
 .p-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));   /* equal columns, no blowout */
-    gap: 22px;
-    align-items: stretch;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(10px, 1.1vw, 22px);
 }
 .p-card {
+    position: relative;
     min-width: 0;
     border: 1px solid #dcdcdc;
-    border-radius: 14px;
-    padding: 24px 20px 20px;
+    border-radius: 10px;
+    padding: clamp(12px, 1.2vw, 22px);
     display: flex;
     flex-direction: column;
 }
 .p-badge {
-    align-self: flex-start;
+    position: absolute;
+    top: clamp(12px, 1.2vw, 22px);
+    left: clamp(12px, 1.2vw, 22px);
+    z-index: 1;
     border: 1.5px solid #eb3986;
     color: #eb3986;
     border-radius: 999px;
-    padding: 2px 14px;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-    line-height: 1.3;
+    padding: 0 clamp(8px, 0.8vw, 14px);
+    font-size: clamp(11px, 0.85vw, 15px);
+    font-weight: 650;
+    line-height: 1.5;
 }
 .p-img {
-    height: 340px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 6px 0 30px;
+    flex: none;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 0.8;          /* shorter image area = shorter card */
+    margin: clamp(14px, 1.5vw, 26px) 0 clamp(6px, 0.7vw, 12px);
 }
-.p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.p-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 .save-pill {
     align-self: flex-start;
     background: #eb3986;
     color: #fff;
     border-radius: 999px;
-    padding: 5px 14px;
-    font-size: 19px;
-    font-weight: 700;
-    margin-bottom: 14px;
+    padding: 1px clamp(8px, 0.8vw, 14px);
+    font-size: clamp(11px, 0.85vw, 15px);
+    font-weight: 500;
+    margin-bottom: 6px;
 }
-.p-title { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.1; }
-.p-price { margin: 12px 0 8px; font-size: 24px; font-weight: 700; }
-.p-price s { font-size: 18px; font-weight: 500; color: #777; margin-left: 4px; }
-.save-amt { font-size: 18px; font-weight: 500; color: #eb3986; margin-left: 4px; }
+.p-title {
+    margin: 0;
+    font-size: clamp(13px, 1vw, 18px);
+    font-weight: 650;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+.p-price { margin: 6px 0 6px; font-size: clamp(13px, 1vw, 18px); font-weight: 600; }
+.p-price s { font-size: clamp(11px, 0.8vw, 14px); color: #777; margin-left: 4px; }
+.save-amt { font-size: clamp(11px, 0.8vw, 14px); color: #eb3986; margin-left: 4px; }
 
 .p-swatches {
     display: flex;
-    gap: 8px;
-    min-height: 42px;
-    margin-bottom: 14px;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    min-height: clamp(22px, 1.8vw, 32px);
+    margin-bottom: 6px;
 }
-.sw {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: block;
-    object-fit: cover;
-}
-.sw-more {
-    border: 1px solid #ccc;
-    background: #fff;
-    text-align: center;
-    line-height: 38px;
-    font-size: 22px;
-}
-.p-rating { margin: auto 0 16px; font-size: 18px; color: #555; }
-.p-card .stars { color: #eb3986; letter-spacing: 2px; font-size: 20px; }
+.sw { width: clamp(20px, 1.6vw, 30px); height: clamp(20px, 1.6vw, 30px); border-radius: 50%; display: block; object-fit: cover; flex: none; }
+.sw-more { border: 1px solid #ccc; background: #fff; text-align: center; line-height: 1.5; font-size: 15px; }
+
+.p-rating { margin: auto 0 clamp(8px, 0.8vw, 14px); font-size: clamp(11px, 0.8vw, 14px); color: #555; }
+.p-card .stars { color: #eb3986; letter-spacing: 1px; font-size: clamp(12px, 0.9vw, 16px); }
 
 .p-btn {
-    height: 60px;
+    height: clamp(34px, 2.6vw, 46px);
     background: #eb3986;
     color: #fff;
     border: 0;
     border-radius: 999px;
     font-family: 'Barlow Condensed', Arial, sans-serif;
-    font-size: 22px;
-    font-weight: 700;
+    font-size: clamp(13px, 1vw, 18px);
+    font-weight: 500;
     cursor: pointer;
 }
 .p-btn:hover { background: #d32d78; }
 
-.view-all {
-    display: block;
-    text-align: center;
-    margin: 36px 0 40px;
-    font-size: 34px;
-    font-weight: 500;
-    color: #555;
-}
+.view-all { display: block; text-align: center; margin: 22px 0 26px; font-size: clamp(18px, 1.4vw, 24px); font-weight: 500; color: #555; }
 
 /* Promo banners (kits + gift) */
 .promo { position: relative; border-radius: 14px; overflow: hidden; margin: 10px 0 50px; }
@@ -368,4 +360,25 @@ ul { list-style: none; margin: 0; padding: 0; }
     .home-tab { font-size: 22px; }
     .promo-text { left: 4%; }
     .promo-sub { display: none; }
+}
+
+/* ===== Sticky header ===== */
+.top-header { position: sticky; top: 0; z-index: 100; }
+
+@media (min-width: 769px) {
+    .top-header.scrolled {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        height: 56px;
+        padding: 0 clamp(20px, 2.4vw, 56px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+    .top-header.scrolled .title-bar { display: contents; }   /* its children join the flex row */
+    .top-header.scrolled .shopping-actions { display: none; }
+    .top-header.scrolled .logo { order: 1; flex: none; }
+    .top-header.scrolled .logo img { height: 30px; }
+    .top-header.scrolled .items { order: 2; flex: 1; height: auto; }
+    .top-header.scrolled .items-list { flex-wrap: nowrap; gap: 0 clamp(12px, 1.8vw, 34px); font-size: 13px; }
+    .top-header.scrolled .options { order: 3; flex: none; }
 }

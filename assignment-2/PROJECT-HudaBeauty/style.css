@@ -1,103 +1,83 @@
-body{
+* { box-sizing: border-box; }
+
+body {
     margin: 0;
-  padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
 }
 
-.announcement-bar{
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+/* Announcement bar */
+.announcement-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
     padding: 8px;
+    background: #111;
+    color: #fff;
+    font-size: 13px;
+}
+.announcement-bar button {
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
 }
 
+/* Header */
+.top-header {
+    background: #EB3986;
+    border-bottom: 1px solid #eee;
+}
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+}
+.shop-what{ 
+    display: flex; 
+    gap: 24px; 
+    font-size: 13px; 
+    font-weight: 700; 
+}
+.options   { display: flex; gap: 16px; align-items: center; font-size: 13px; }
+.options button { background: none; border: 0; cursor: pointer; }
 
-.top-header{
-    background-color: #eb3986;
-    width: 100%;
-  margin: 0;
-  padding: 0;
-}
-.title-bar{
+.logo img { height: 45px; width: auto; display: block; }
+
+.items { padding: 10px 0; }
+.items-list {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    font-size: 14px;
 }
-.shop-what{
-    display: flex;
-      gap: 40px;            /* space between items */
-  list-style: none;
-}
-.options{
-    display: flex;
-    gap: 20px;
-}
-.items-list{
-    display:flex;
-    gap: 35px;
-    
-}
-.items{
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center;     /* Centers vertically (if nav has a fixed height) */
-    width: 100%
-}
-.logo {
-    height: 45px;
-    display: block;
-}
+.items-list a:hover { text-decoration: underline; }
 
 .hero {
-    position: relative;
-    height: 545px;
-    background-color: #fdeeee;   /* same pink as the image edges */
+    display: grid;
+    background-color: #fdeeee;
+    min-height: 545px;
     overflow: hidden;
 }
-
-.hero-img {
-    display: block;
-    height: 100%;      /* image fits the 545px height */
-    width: auto;       /* width follows the image's proportions */
-    margin: 0 auto;    /* centers it; pink fills both sides */
-}
-
+.hero-img,
 .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 21%;
-    transform: translateY(-50%);
+    grid-area: 1 / 1;          /* both sit in the same cell */
+}
+.hero-img {
+    width: 100%;
+    height: 100%;
+object-fit: contain;
+    object-position: center;
+}
+.hero-text {
+    align-self: center;
+    padding: 0 8%;
     color: #6f3f2c;
 }
-
-.hero-badge {
-    display: inline-block;
-    background-color: #6f3f2c;
-    color: #fff;
-    border-radius: 999px;
-    padding: 2px 14px;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.hero-text h1 {
-    font-size: 52px;
-    line-height: 0.88;
-    max-width: 300px;
-    margin: 8px 0;
-    text-transform: uppercase;
-    font-weight: 900;
-}
-
-.hero-text p {
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-}
-
-.hero-btn {
-    display: inline-block;
-    background-color: #b4695a;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-radius: 999px;
-    padding: 14px 50px;
-}
-

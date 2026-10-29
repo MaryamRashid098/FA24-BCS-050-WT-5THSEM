@@ -14,20 +14,26 @@
 }
 
 /* Breadcrumb */
-.breadcrumb { padding: 22px 0; font-size: 15px; color: #666; }
-.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb-nav { padding: 22px 0; font-size: 16px; color: #666; }
+.breadcrumb-nav a:hover { text-decoration: underline; }
 
-/* Two-column layout */
+/* Two-column layout (plain CSS grid, no Bootstrap row/col here) */
 .pdp-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 60px;
     align-items: start;
 }
 
 /* Gallery */
-.gallery-main { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-.gallery-main img { width: 100%; display: block; }
+.gallery-main {
+    aspect-ratio: 6 / 7;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+}
+.gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .gallery-thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
 .gallery-thumbs img {
     width: 100%;
@@ -77,6 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex: none;
     width: 150px;
     height: 54px;
     border: 1px solid #000;
@@ -87,6 +94,7 @@
 .qty button { background: none; border: 0; font-size: 24px; cursor: pointer; }
 .btn-add {
     flex: 1;
+    min-width: 0;
     height: 54px;
     background: var(--pink);
     color: #fff;
@@ -95,12 +103,16 @@
     font-family: inherit;
     font-size: 21px;
     font-weight: 700;
+    white-space: nowrap;
     cursor: pointer;
 }
 .btn-add:hover { background: #d32d78; }
+.btn-add.small { width: 100%; height: 46px; font-size: 19px; }
 
 /* Kits */
-.kits h3 { font-size: 22px; margin: 0 0 10px; }
+.kit-tabs { display: flex; gap: 26px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+.kit-tabs span { font-size: 22px; padding-bottom: 6px; border-bottom: 3px solid transparent; }
+.kit-tabs .active { border-bottom-color: #000; font-weight: 700; }
 .kit {
     display: flex;
     align-items: center;
@@ -115,8 +127,17 @@
 .kit-name { font-weight: 700; font-size: 20px !important; }
 .save { color: var(--pink); font-weight: 700; margin-left: 6px; }
 
+/* Pairs well with */
+.pair { border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-top: 16px; }
+.pair-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.pair-head img { width: 72px; height: 72px; object-fit: contain; }
+.pair-head p { margin: 0 0 4px; font-size: 18px; }
+.pair .shades { margin-bottom: 14px; }
+
 .perks { margin: 18px 0 0; font-size: 18px; line-height: 1.8; }
 .perks li::before { content: "✓ "; color: var(--pink); }
+.loyalty { font-size: 17px; margin: 10px 0 0; }
+.loyalty a { text-decoration: underline; }
 
 /* Product info / how to use */
 .details {
@@ -127,11 +148,18 @@
     padding-top: 40px;
     border-top: 1px solid var(--border);
 }
-.details h2, .shades-section h2, .reviews h2 { font-size: 32px; margin: 0 0 16px; }
+.details h2, .shades-section h2, .reviews h2, .ship-info h2 { font-size: 32px; margin: 0 0 16px; }
 .details p, .details li { font-size: 19px; line-height: 1.4; margin: 0 0 12px; }
 .details ul { padding-left: 20px; list-style: disc; }
 
-/* Shades */
+/* Gift banner + shipping */
+.gift-banner { margin-top: 50px; border-radius: 14px; overflow: hidden; }
+.gift-banner img { width: 100%; display: block; }
+.ship-info { margin-top: 50px; }
+.ship-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ship-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px; font-size: 19px; }
+
+/* Shades image (palette page) */
 .shades-section { margin-top: 60px; }
 .shades-section img { width: 100%; display: block; border-radius: 14px; }
 
@@ -188,7 +216,7 @@
 /* Mobile */
 @media (max-width: 900px) {
     .pdp { padding: 0 16px 40px; }
-    .pdp-grid, .details { grid-template-columns: 1fr; gap: 30px; }
+    .pdp-grid, .details, .ship-cards { grid-template-columns: 1fr; gap: 30px; }
     .info h1 { font-size: 34px; }
     .footer { padding: 36px 16px 20px; }
     .footer-top { flex-direction: column; align-items: flex-start; }

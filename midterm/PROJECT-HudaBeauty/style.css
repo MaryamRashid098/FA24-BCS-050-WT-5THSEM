@@ -365,3 +365,65 @@ ul { list-style: none; margin: 0; padding: 0; }
     .hb-logo { padding: 12px 0; }
     .top-header.scrolled .hb-logo { padding: 0; }
 }
+
+
+/* ===================== MIDTERM ===================== */
+/* N = 50  ->  BP = 650px, H = 350, K = 5, cart limit = 4 */
+:root { --accent: hsl(350, 70%, 45%); }
+
+/* ---------- Task 1: mega-menu ---------- */
+
+/* Default (below BP): hide the desktop panel, show the accordion */
+.mega-panel { display: none; }
+.mega-acc details { border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
+.mega-acc summary { padding: 10px 0; font-size: 17px; text-transform: uppercase; cursor: pointer; }
+.mega-acc ul a { display: block; padding: 6px 0 6px 16px; font-size: 15px; color: #fff; }
+
+/* BP and wider */
+@media (min-width: 650px) {
+    .mega-acc { display: none; }
+
+    .mega-panel {
+        display: block;
+        position: absolute;          /* anchored to .navbar (position: relative in Bootstrap) */
+        top: 100%;                   /* directly under the navbar */
+        left: 0;
+        right: 0;                    /* together = full width */
+        z-index: 1050;               /* above grid, cards, badges */
+        background: #fff;
+        color: #3b2317;
+        padding: 28px clamp(16px, 3vw, 56px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+        visibility: hidden;          /* hidden links can't be tabbed to */
+        opacity: 0;
+        transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+    }
+    /* invisible bridge so the pointer can travel from the link to the panel */
+    .mega-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -24px; height: 24px; }
+
+    .mega-item:hover .mega-panel,
+    .mega-item:focus-within .mega-panel {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
+
+    .mega-cols { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }  /* K = 5 */
+    .mega-col h3 {
+        margin: 0 0 10px; padding-bottom: 6px;
+        font-size: 20px; font-weight: 700; text-transform: uppercase;
+        color: var(--accent); border-bottom: 2px solid var(--accent);
+    }
+    .mega-col a { display: block; padding: 4px 0; font-size: 17px; color: #3b2317; }
+    .mega-col a:hover,
+    .mega-col a:focus-visible { color: var(--accent); text-decoration: underline; }
+}
+
+/* 650px to 991px: Bootstrap still collapses the menu until 992px, so force it open from BP */
+@media (min-width: 650px) and (max-width: 991.98px) {
+    .hb-toggler { display: none; }
+    .top-header .hb-menu.collapse:not(.show) { display: flex; }
+    .top-header .hb-items { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 24px; padding: 6px 0; }
+}
+
+

@@ -1,11 +1,10 @@
-* { box-sizing: border-box; }
+
 
 body {
     margin: 0;
     font-family: 'Barlow Condensed', Arial, Helvetica, sans-serif;
     color: #3b2317;
 }
-
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
 
@@ -14,9 +13,9 @@ ul { list-style: none; margin: 0; padding: 0; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 46px;
+    height: 40px;
     padding: 0 clamp(16px, 2.5vw, 48px);
-    background: #613826; /* Matched to the exact rich brown tone in reference */
+    background: #613826;
     color: #fff;
     font-size: 13px;
     font-weight: 700;
@@ -32,79 +31,84 @@ ul { list-style: none; margin: 0; padding: 0; }
     cursor: pointer;
 }
 
-/* ===== Header ===== */
-.top-header {
-    background: #eb3986;
+/* ===== Header (Bootstrap navbar) ===== */
+.top-header { background: #eb3986; color: #fff; z-index: 1030; }
+.top-header .navbar { padding: 0; }
+.top-header .hb-bar { padding: 0 clamp(16px, 3vw, 56px); min-height: 64px; }
+
+.hb-shop { gap: clamp(12px, 2.5vw, 40px); }
+.hb-shop .nav-link,
+.hb-items .nav-link {
     color: #fff;
-}
-
-.title-bar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    column-gap: 16px;
-    align-items: center;
-    height: 97px;                              
-    padding: 0 clamp(20px, 3vw, 56px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-}
-.shop-what {
-    display: flex;
-    gap: clamp(12px, 2.5vw, 40px);             
-    font-size: clamp(15px, 1.1vw, 20px);
-    font-weight: 700;
+    padding: 0;
     text-transform: uppercase;
-    white-space: nowrap;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
 }
-.logo img { height: clamp(34px, 3.05vw, 58px); width: auto; display: block; }
+.hb-shop .nav-link { font-size: clamp(15px, 1.1vw, 20px); font-weight: 700; }
+.hb-items .nav-link { font-size: 14px; font-weight: 500; }
+.hb-shop .nav-link:hover,
+.hb-items .nav-link:hover { color: #fff; text-decoration: underline; }
 
-.options {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: clamp(12px, 1.5vw, 28px);
-    font-size: clamp(16px, 1.15vw, 22px);
-    font-weight: 700;
-    white-space: nowrap;
-}
-.options button {
+.hb-logo { margin: 0; padding: 0; }
+.hb-logo img { height: clamp(30px, 3.05vw, 58px); width: auto; display: block; }
+
+.hb-options { gap: clamp(12px, 1.5vw, 28px); font-size: clamp(16px, 1.15vw, 22px); }
+.hb-options a { color: #fff; }
+.hb-options button {
     background: none;
     border: 1px solid #fff;
     border-radius: 999px;
-    padding: 4px 16px;
+    padding: 3px 14px;
     color: #fff;
     font-family: inherit;
-    font-size: clamp(15px, 1.05vw, 20px);
     font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
+    font-size: 15px;
+}
+.hb-toggler { color: #fff; border: 0; font-size: 24px; padding: 0; }
+.hb-toggler:focus { box-shadow: none; }
+
+.hb-menu { border-top: 1px solid rgba(255, 255, 255, 0.35); }
+
+/* Phone / tablet: menu opens as a vertical list */
+@media (max-width: 991.98px) {
+    .hb-items { padding: 6px 0 12px; }
+    .hb-items .nav-link { padding: 10px 0; font-size: 17px; }
 }
 
-.items {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 62px; /* Slashed down from 84px to make it thin and sleek */
-    padding: 0;
-}
+/* Desktop: 3-column top row, menu row underneath */
+@media (min-width: 992px) {
+    .top-header .hb-bar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+    .hb-options { justify-self: end; }
+    .hb-menu { grid-column: 1 / -1; justify-content: center; }
+    .hb-items { gap: clamp(14px, 3vw, 56px); padding: 14px 0; }
+    .hb-items .nav-link { padding: 0; }
 
-.items-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0 clamp(14px, 3.5vw, 60px);
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    white-space: nowrap;
+    /* Scrolled: collapse to a single row (class added by script.js) */
+    .top-header.scrolled { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); }
+    .top-header.scrolled .hb-bar {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        min-height: 56px;
+    }
+    .top-header.scrolled .hb-shop { display: none !important; }
+    .top-header.scrolled .hb-logo { order: 1; }
+    .top-header.scrolled .hb-logo img { height: 30px; }
+    .top-header.scrolled .hb-menu { order: 2; flex: 1; border-top: 0; }
+    .top-header.scrolled .hb-items { flex-wrap: nowrap; gap: clamp(10px, 1.6vw, 30px); padding: 0; }
+    .top-header.scrolled .hb-items .nav-link { font-size: 13px; }
+    .top-header.scrolled .hb-options { order: 3; }
 }
-.items-list a:hover { text-decoration: underline; }
 
 /* ===== Hero ===== */
 .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr);      /* the fix: row = hero height, not image height */
+    grid-template-rows: minmax(0, 1fr);
     height: clamp(400px, 28.7vw, 545px);
     background-color: #fdeeee;
     overflow: hidden;
@@ -142,7 +146,6 @@ ul { list-style: none; margin: 0; padding: 0; }
     letter-spacing: 0.5px;
 }
 
-
 .hero-text h1 {
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 900;
@@ -153,9 +156,7 @@ ul { list-style: none; margin: 0; padding: 0; }
     text-transform: uppercase;
 }
 
-
 .hero-text p {
-    font-family: 'Barlow Condensed', sans-serif;
     font-family: 'Barlow Condensed', Arial, sans-serif;
     font-weight: 700;
     font-size: clamp(16px, 1.16vw, 22px);
@@ -165,7 +166,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 
 .hero-btn {
-    
     display: inline-block;
     height: 43px;
     line-height: 43px;
@@ -181,33 +181,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .hero-btn:hover { background-color: #9f5b40; }
 
-/* ===== Phones and small tablets ===== */
-@media (max-width: 768px) {
-    .announcement-bar { height: auto; padding: 10px 16px; font-size: 15px; }
-    .announcement-bar button { font-size: 26px; }
-
-    .title-bar { display: flex; justify-content: space-between; height: 72px; padding: 0 16px; }
-    .shop-what { display: none; }
-    .logo img { height: 30px; }
-
-    .items { height: auto; padding: 12px 8px; }
-    .items-list { gap: 8px 22px; font-size: 17px; }
-
-    .hero { height: 420px; }
-    .hero-img { object-fit: cover; object-position: 70% center; }
-    .hero-text { padding-left: 6%; }
-    .hero-text h1 { font-size: 34px; }
-    .hero-text p { font-size: 18px; }
-    .hero-btn { height: 38px; line-height: 38px; padding: 0 36px; font-size: 18px; }
-}
-
-@media (max-width: 480px) {
-    .options a { display: none; }
-    .hero { height: 340px; }
-    .hero-text h1 { font-size: 28px; }
-}
-
-/* ===== Homepage products ===== */
+/*Homepage products */
 .home {
     padding: 0 clamp(20px, 4.3vw, 82px) 60px;
     max-width: 1920px;
@@ -229,14 +203,10 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .home-tab.active { color: #eb3986; border-bottom-color: #eb3986; }
 
-/* Card grid */
-.p-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(10px, 1.1vw, 22px);
-}
+/* Cards (the grid itself comes from Bootstrap: row / col) */
 .p-card {
     position: relative;
+    height: 100%;
     min-width: 0;
     border: 1px solid #dcdcdc;
     border-radius: 10px;
@@ -254,14 +224,14 @@ ul { list-style: none; margin: 0; padding: 0; }
     border-radius: 999px;
     padding: 0 clamp(8px, 0.8vw, 14px);
     font-size: clamp(11px, 0.85vw, 15px);
-    font-weight: 650;
+    font-weight: 500;
     line-height: 1.5;
 }
 .p-img {
     flex: none;
     display: block;
     width: 100%;
-    aspect-ratio: 1 / 0.8;          /* shorter image area = shorter card */
+    aspect-ratio: 1 / 0.8;
     margin: clamp(14px, 1.5vw, 26px) 0 clamp(6px, 0.7vw, 12px);
 }
 .p-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -279,11 +249,11 @@ ul { list-style: none; margin: 0; padding: 0; }
 .p-title {
     margin: 0;
     font-size: clamp(13px, 1vw, 18px);
-    font-weight: 650;
+    font-weight: 500;
     line-height: 1.15;
     text-transform: uppercase;
 }
-.p-price { margin: 6px 0 6px; font-size: clamp(13px, 1vw, 18px); font-weight: 600; }
+.p-price { margin: 6px 0; font-size: clamp(13px, 1vw, 18px); font-weight: 500; }
 .p-price s { font-size: clamp(11px, 0.8vw, 14px); color: #777; margin-left: 4px; }
 .save-amt { font-size: clamp(11px, 0.8vw, 14px); color: #eb3986; margin-left: 4px; }
 
@@ -295,7 +265,14 @@ ul { list-style: none; margin: 0; padding: 0; }
     min-height: clamp(22px, 1.8vw, 32px);
     margin-bottom: 6px;
 }
-.sw { width: clamp(20px, 1.6vw, 30px); height: clamp(20px, 1.6vw, 30px); border-radius: 50%; display: block; object-fit: cover; flex: none; }
+.sw {
+    width: clamp(20px, 1.6vw, 30px);
+    height: clamp(20px, 1.6vw, 30px);
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    flex: none;
+}
 .sw-more { border: 1px solid #ccc; background: #fff; text-align: center; line-height: 1.5; font-size: 15px; }
 
 .p-rating { margin: auto 0 clamp(8px, 0.8vw, 14px); font-size: clamp(11px, 0.8vw, 14px); color: #555; }
@@ -314,7 +291,14 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .p-btn:hover { background: #d32d78; }
 
-.view-all { display: block; text-align: center; margin: 22px 0 26px; font-size: clamp(18px, 1.4vw, 24px); font-weight: 500; color: #555; }
+.view-all {
+    display: block;
+    text-align: center;
+    margin: 22px 0 26px;
+    font-size: clamp(18px, 1.4vw, 24px);
+    font-weight: 500;
+    color: #555;
+}
 
 /* Promo banners (kits + gift) */
 .promo { position: relative; border-radius: 14px; overflow: hidden; margin: 10px 0 50px; }
@@ -352,33 +336,93 @@ ul { list-style: none; margin: 0; padding: 0; }
     color: #eb3986;
 }
 
-/* Responsive */
-@media (max-width: 1100px) { .p-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) {
-    .p-grid { grid-template-columns: 1fr; }
+/* ===== Phones and small tablets ===== */
+@media (max-width: 768px) {
+    .announcement-bar { height: auto; padding: 10px 16px; font-size: 15px; }
+    .announcement-bar button { font-size: 26px; }
+
+    .hero { height: 420px; }
+    .hero-img { object-fit: cover; object-position: 70% center; }
+    .hero-text { padding-left: 6%; }
+    .hero-text h1 { font-size: 34px; }
+    .hero-text p { font-size: 18px; }
+    .hero-btn { height: 38px; line-height: 38px; padding: 0 36px; font-size: 18px; }
+
     .home-tabs { gap: 24px; }
-    .home-tab { font-size: 22px; }
     .promo-text { left: 4%; }
+}
+
+@media (max-width: 480px) {
+    .hero { height: 340px; }
+    .hero-text h1 { font-size: 28px; }
     .promo-sub { display: none; }
 }
-
-/* ===== Sticky header ===== */
-.top-header { position: sticky; top: 0; z-index: 100; }
-
-@media (min-width: 769px) {
-    .top-header.scrolled {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        height: 56px;
-        padding: 0 clamp(20px, 2.4vw, 56px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-    }
-    .top-header.scrolled .title-bar { display: contents; }   /* its children join the flex row */
-    .top-header.scrolled .shopping-actions { display: none; }
-    .top-header.scrolled .logo { order: 1; flex: none; }
-    .top-header.scrolled .logo img { height: 30px; }
-    .top-header.scrolled .items { order: 2; flex: 1; height: auto; }
-    .top-header.scrolled .items-list { flex-wrap: nowrap; gap: 0 clamp(12px, 1.8vw, 34px); font-size: 13px; }
-    .top-header.scrolled .options { order: 3; flex: none; }
+@media (min-width: 992px) {
+    .hb-logo { padding: 12px 0; }
+    .top-header.scrolled .hb-logo { padding: 0; }
 }
+@media (min-width: 992px) {
+    .hb-logo { padding: 12px 0; }
+    .top-header.scrolled .hb-logo { padding: 0; }
+}
+
+
+/* ===================== MIDTERM ===================== */
+/* N = 50  ->  BP = 650px, H = 350, K = 5, cart limit = 4 */
+:root { --accent: hsl(350, 70%, 45%); }
+
+/* ---------- Task 1: mega-menu ---------- */
+
+/* Default (below BP): hide the desktop panel, show the accordion */
+.mega-panel { display: none; }
+.mega-acc details { border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
+.mega-acc summary { padding: 10px 0; font-size: 17px; text-transform: uppercase; cursor: pointer; }
+.mega-acc ul a { display: block; padding: 6px 0 6px 16px; font-size: 15px; color: #fff; }
+
+/* BP and wider */
+@media (min-width: 650px) {
+    .mega-acc { display: none; }
+
+    .mega-panel {
+        display: block;
+        position: absolute;          /* anchored to .navbar (position: relative in Bootstrap) */
+        top: 100%;                   /* directly under the navbar */
+        left: 0;
+        right: 0;                    /* together = full width */
+        z-index: 1050;               /* above grid, cards, badges */
+        background: #fff;
+        color: #3b2317;
+        padding: 28px clamp(16px, 3vw, 56px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+        visibility: hidden;          /* hidden links can't be tabbed to */
+        opacity: 0;
+        transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+    }
+    /* invisible bridge so the pointer can travel from the link to the panel */
+    .mega-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -24px; height: 24px; }
+
+    .mega-item:hover .mega-panel,
+    .mega-item:focus-within .mega-panel {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
+
+    .mega-cols { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }  /* K = 5 */
+    .mega-col h3 {
+        margin: 0 0 10px; padding-bottom: 6px;
+        font-size: 20px; font-weight: 700; text-transform: uppercase;
+        color: var(--accent); border-bottom: 2px solid var(--accent);
+    }
+    .mega-col a { display: block; padding: 4px 0; font-size: 17px; color: #3b2317; }
+    .mega-col a:hover,
+    .mega-col a:focus-visible { color: var(--accent); text-decoration: underline; }
+}
+
+/* 650px to 991px: Bootstrap still collapses the menu until 992px, so force it open from BP */
+@media (min-width: 650px) and (max-width: 991.98px) {
+    .hb-toggler { display: none; }
+    .top-header .hb-menu.collapse:not(.show) { display: flex; }
+    .top-header .hb-items { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 24px; padding: 6px 0; }
+}
+

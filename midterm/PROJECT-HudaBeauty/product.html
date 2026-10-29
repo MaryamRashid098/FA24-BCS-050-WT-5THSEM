@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bronze Filter Palette | Huda Beauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product.css">
+
+    <style>
+        @media (min-width: 992px) {
+            .hb-logo { padding: 12px 0; }
+            .top-header.scrolled .hb-logo { padding: 0; }
+        }
+
+        .bp { max-width: 1400px; margin: 0 auto; padding: 0 40px 60px; font-family: 'Barlow Condensed', Arial, sans-serif; color: #000; }
+        .bp a { color: inherit; }
+        .bp-crumbs { padding: 22px 0; font-size: 16px; color: #666; }
+        .bp-crumbs a:hover { text-decoration: underline; }
+
+        .bp-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 60px; align-items: start; }
+
+        .bp-main-img { aspect-ratio: 6 / 7; border: 1px solid #dcdcdc; border-radius: 14px; overflow: hidden; background: #fff; }
+        .bp-main-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .bp-thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
+        .bp-thumbs img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid #dcdcdc; border-radius: 8px; }
+        .bp-thumbs img:first-child { border: 2px solid #000; }
+
+        .bp-tag { display: inline-block; border: 1.5px solid #eb3986; color: #eb3986; border-radius: 999px; padding: 2px 14px; font-size: 17px; font-weight: 700; }
+        .bp-title { font-size: 44px; font-weight: 700; line-height: 1; margin: 14px 0 10px; }
+        .bp-desc { font-size: 19px; line-height: 1.3; max-width: 560px; margin: 0 0 14px; }
+        .bp-rating { font-size: 18px; margin: 0 0 14px; }
+        .bp-rating a { text-decoration: underline; }
+        .bp-stars { color: #eb3986; letter-spacing: 2px; }
+        .bp-price { font-size: 30px; font-weight: 700; margin: 0 0 22px; }
+
+        .bp-shade-row { display: flex; justify-content: space-between; font-size: 19px; margin-bottom: 10px; }
+        .bp-shade-row a { text-decoration: underline; }
+        .bp-shades { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+        .bp-shade { background: #fff; border: 1px solid #000; border-radius: 999px; padding: 8px 22px; font-family: inherit; font-size: 18px; font-weight: 600; cursor: pointer; }
+        .bp-shade.active { background: #000; color: #fff; }
+
+        .bp-buy { display: flex; gap: 14px; margin-bottom: 28px; }
+        .bp-qty { flex: none; display: flex; align-items: center; justify-content: space-between; width: 150px; height: 54px; border: 1px solid #000; border-radius: 999px; padding: 0 18px; font-size: 20px; }
+        .bp-qty button { background: none; border: 0; font-size: 24px; cursor: pointer; }
+        .bp-add { flex: 1; min-width: 0; height: 54px; background: #eb3986; color: #fff; border: 0; border-radius: 999px; font-family: inherit; font-size: 21px; font-weight: 700; white-space: nowrap; cursor: pointer; }
+        .bp-add:hover { background: #d32d78; }
+        .bp-add.small { width: 100%; flex: none; height: 46px; font-size: 19px; }
+
+        .bp-tabs { display: flex; gap: 26px; border-bottom: 1px solid #dcdcdc; margin-bottom: 14px; }
+        .bp-tabs span { font-size: 22px; padding-bottom: 6px; border-bottom: 3px solid transparent; }
+        .bp-tabs .active { border-bottom-color: #000; font-weight: 700; }
+        .bp-kit { display: flex; align-items: center; gap: 14px; border: 1px solid #dcdcdc; border-radius: 12px; padding: 10px; margin-bottom: 10px; }
+        .bp-kit img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; flex: none; }
+        .bp-kit p { margin: 0 0 4px; font-size: 18px; }
+        .bp-kit .name { font-weight: 700; font-size: 20px; }
+        .bp-save { color: #eb3986; font-weight: 700; margin-left: 6px; }
+
+        .bp-pair { border: 1px solid #dcdcdc; border-radius: 12px; padding: 14px; margin-top: 16px; }
+        .bp-pair-head { display: flex; align-items: center; gap: 14px; }
+        .bp-pair-head img { width: 72px; height: 72px; object-fit: contain; flex: none; }
+        .bp-pair-head p { margin: 0 0 4px; font-size: 18px; }
+        .bp-pair-head .name { font-weight: 700; font-size: 20px; }
+        .bp-pair .bp-add { margin-top: 12px; }
+
+        .bp-perks { list-style: none; margin: 18px 0 0; padding: 0; font-size: 18px; line-height: 1.8; }
+        .bp-perks li::before { content: "✓ "; color: #eb3986; }
+        .bp-loyalty { font-size: 17px; margin: 10px 0 0; }
+        .bp-loyalty a { text-decoration: underline; }
+
+        .bp-details { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 70px; padding-top: 40px; border-top: 1px solid #dcdcdc; }
+        .bp h2 { font-size: 32px; font-weight: 700; margin: 0 0 16px; }
+        .bp-details p, .bp-details li { font-size: 19px; line-height: 1.4; margin: 0 0 12px; }
+        .bp-details ul { padding-left: 20px; list-style: disc; }
+
+        .bp-shades-section { margin-top: 60px; }
+        .bp-shades-section img { width: 100%; display: block; border-radius: 14px; }
+
+        .bp-gift { margin-top: 50px; border-radius: 14px; overflow: hidden; }
+        .bp-gift img { width: 100%; display: block; }
+        .bp-ship { margin-top: 50px; }
+        .bp-ship-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .bp-ship-card { border: 1px solid #dcdcdc; border-radius: 12px; padding: 18px; font-size: 19px; }
+
+        .bp-reviews { margin-top: 60px; }
+        .bp-review { border-top: 1px solid #dcdcdc; padding: 20px 0; font-size: 19px; }
+        .bp-review p { margin: 6px 0; }
+        .bp-verified { color: #666; font-size: 16px; margin-left: 8px; }
+
+        @media (max-width: 900px) {
+            .bp { padding: 0 16px 40px; }
+            .bp-grid, .bp-details, .bp-ship-cards { grid-template-columns: 1fr; gap: 30px; }
+            .bp-title { font-size: 34px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        <button> ‹ </button>
+        <a> CYBER 2026 IS COMING... SIGN UP FOR EARLY ACCESS </a>
+        <button> › </button>
+    </div>
+
+    <!-- HEADER (Bootstrap navbar) -->
+    <header class="top-header sticky-top">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid hb-bar">
+
+          <button class="navbar-toggler hb-toggler d-lg-none" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#hbMenu"
+                  aria-controls="hbMenu" aria-expanded="false" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <ul class="navbar-nav flex-row hb-shop d-none d-lg-flex">
+            <li class="nav-item"><a class="nav-link" href="index.html">SHOP ALL</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">NEW</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">BEST SELLERS</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">GIFTS &amp; SETS</a></li>
+          </ul>
+
+          <a class="navbar-brand hb-logo" href="index.html"><img src="LOGO.avif" alt="Huda Beauty"></a>
+
+          <div class="d-flex align-items-center hb-options">
+            <button class="d-none d-md-inline-block">KG | EN</button>
+            <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#" class="d-none d-md-inline" aria-label="Account"><i class="fa-regular fa-user"></i></a>
+            <a href="#" class="d-none d-md-inline" aria-label="Wishlist"><i class="fa-solid fa-circle-user"></i></a>
+            <a href="#" aria-label="Bag"><i class="fa-solid fa-bag-shopping"></i></a>
+          </div>
+
+          <div class="collapse navbar-collapse hb-menu" id="hbMenu">
+            <ul class="navbar-nav hb-items">
+              <li class="nav-item d-lg-none"><a class="nav-link" href="index.html">SHOP ALL</a></li>
+              <li class="nav-item d-lg-none"><a class="nav-link" href="index.html">NEW</a></li>
+              <li class="nav-item d-lg-none"><a class="nav-link" href="index.html">BEST SELLERS</a></li>
+              <li class="nav-item d-lg-none"><a class="nav-link" href="index.html">GIFTS &amp; SETS</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">FACE</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">CHEEKS</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">LIPS</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">EYES</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">FRAGRANCES</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">MINIS</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">BRUSHES &amp; ACCESSORIES</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">SKIN CARE</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">HAIR EXTENSIONS</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </nav>
+    </header>
+
+    <!-- PRODUCT PAGE -->
+    <main class="bp">
+
+        <nav class="bp-crumbs">
+            <a href="index.html">Shop All</a> / <a href="#">Cheek</a> / <a href="#">Bronzer</a>
+        </nav>
+
+        <div class="bp-grid">
+
+            <!-- LEFT: gallery -->
+            <section>
+                <div class="bp-main-img">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE_PDP_PACKSHOTS_FINAL_LIGHT.webp?v=1789906885&width=1946" alt="Bronze Filter Palette">
+                </div>
+                <div class="bp-thumbs">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE_PDP_PACKSHOTS_FINAL_LIGHT.webp?v=1789906885&width=416" alt="">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE_PDP_BAs_FINAL_B_A-LIGHT.webp?v=1789907319&width=416" alt="">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE_PDP_INFOGRAPHICS_FINAL_POD-HUDA.webp?v=1789907487&width=416" alt="">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE_PDP_INFOGRAPHICS_FINAL_SHADE-FINDER.webp?v=1789907661&width=416" alt="">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE_PDP_ARM-SWATCHES_FINAL_LIGHT.webp?v=1789907815&width=416" alt="">
+                </div>
+            </section>
+
+            <!-- RIGHT: product info -->
+            <section>
+                <span class="bp-tag">NEW</span>
+                <h1 class="bp-title">BRONZE FILTER PALETTE</h1>
+                <p class="bp-desc">Four-shade powder bronzer palette delivering buildable bronze, contour and radiance with a smooth, filtered finish. ● 7.5g</p>
+
+                <div class="bp-rating">
+                    <span class="bp-stars">★★★★★</span> 5.0 <a href="#reviews">(80 total reviews)</a>
+                </div>
+
+                <p class="bp-price">$53.00</p>
+
+                <div class="bp-shade-row">
+                    <span>Shade: <strong>Light</strong></span>
+                    <a href="#shades">See the shades</a>
+                </div>
+                <div class="bp-shades">
+                    <button class="bp-shade active">Light</button>
+                    <button class="bp-shade">Medium</button>
+                    <button class="bp-shade">Tan</button>
+                    <button class="bp-shade">Rich</button>
+                    <button class="bp-shade">Ultra Rich</button>
+                </div>
+
+                <div class="bp-buy">
+                    <div class="bp-qty">
+                        <button>−</button>
+                        <span>1</span>
+                        <button>+</button>
+                    </div>
+                    <button class="bp-add">ADD TO BAG</button>
+                </div>
+
+                <!-- Kits -->
+                <div class="bp-tabs">
+                    <span class="active">Save with Kits</span>
+                    <span>Pairs well with</span>
+                </div>
+
+                <a href="#" class="bp-kit">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-KITS_THE-SUNKISSED-KIT.webp?v=1790800134&width=144" alt="">
+                    <div>
+                        <p class="name">The Sunkissed Kit</p>
+                        <p><s>$111.00</s> $99.90 <span class="bp-save">Save 10%</span></p>
+                    </div>
+                </a>
+                <a href="#" class="bp-kit">
+                    <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-KITS_BRONZE-CONTOUR-DUO.webp?v=1790800059&width=144" alt="">
+                    <div>
+                        <p class="name">Bronze &amp; Contour Duo</p>
+                        <p><s>$84.00</s> $75.60 <span class="bp-save">Save 10%</span></p>
+                    </div>
+                </a>
+
+                <!-- Pairs well with -->
+                <div class="bp-pair">
+                    <div class="bp-pair-head">
+                        <img src="BRONZING-CONTOUR-BRUSH_PDP_FINAL_PACKSHOT.webp" alt="">
+                        <div>
+                            <p class="name"><a href="product-brush.html">Bronzer and Contour Brush</a></p>
+                            <p>$31.00</p>
+                        </div>
+                    </div>
+                    <button class="bp-add small">ADD TO BAG</button>
+                </div>
+
+                <ul class="bp-perks">
+                    <li>Estimated delivery: 4–6 business days</li>
+                    <li>Free samples with every order</li>
+                </ul>
+                <p class="bp-loyalty"><a href="#">Create an account</a> or <a href="#">Sign in</a> to earn loyalty points on every purchase.</p>
+            </section>
+        </div>
+
+        <!-- PRODUCT INFO / HOW TO USE -->
+        <section class="bp-details">
+            <div>
+                <h2>PRODUCT INFO</h2>
+                <p><strong>WHAT IT IS:</strong> Our first-ever powder bronzer! Everything you need to bronze and contour in one easy-to-use palette with buildable, blendable powders for a soft, sun-kissed look.</p>
+                <p><strong>WHAT IT DOES:</strong> From soft, sun-kissed bronze to sculpted definition, it's easy to get the look you want. Four shades that work together: true bronze, contour, rosy warmth and soft radiance, all with a smooth, filtered finish.</p>
+                <p><strong>WHY WE'RE OBSESSED</strong></p>
+                <ul>
+                    <li>Our first-ever powder bronzer</li>
+                    <li>Everything you need to bronze and contour in one palette</li>
+                    <li>Buildable, blendable powders for a smooth, filtered finish</li>
+                </ul>
+            </div>
+            <div>
+                <h2>HOW TO USE</h2>
+                <ul>
+                    <li><strong>SWIRL TECHNIQUE:</strong> use the Dual-Ended Bronze &amp; Contour brush to swirl all 4 shades together and sweep across forehead, cheeks, nose and jawline.</li>
+                    <li><strong>SCULPT:</strong> apply Contour and Bronzing Melange along the hollows of your cheeks, jawline and sides of your nose.</li>
+                    <li><strong>BRONZE:</strong> apply True Bronzer across temples, cheeks and jawline.</li>
+                    <li><strong>SUNKISSED:</strong> apply Sunkissed Bronzer and Bronzing Melange to forehead, cheeks and bridge of the nose.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SHADES -->
+        <section class="bp-shades-section" id="shades">
+            <h2>THE SHADES</h2>
+            <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PDP_SHADES.webp?v=1790784711&width=3000" alt="Bronze Filter Palette shades">
+        </section>
+
+        <!-- GIFT BANNER -->
+        <section class="bp-gift">
+            <img src="https://hudabeauty.com/cdn/shop/files/BRONZE-FILTER-PALETTE-PDP-TILE-V3_D-ART.jpg?v=1792658569&width=2000" alt="Complimentary gift: Easy Blur Primer with orders $100+ and any Bronze Filter Palette">
+        </section>
+
+        <!-- SHIPPING INFO -->
+        <section class="bp-ship">
+            <h2>SHIPPING INFO</h2>
+            <div class="bp-ship-cards">
+                <div class="bp-ship-card"><strong>Free standard shipping</strong> on orders over $89</div>
+                <div class="bp-ship-card"><strong>Orders under $89</strong> ship for $32. Calculated before taxes, after discounts.</div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section class="bp-reviews" id="reviews">
+            <h2>REVIEWS</h2>
+            <p class="bp-rating"><span class="bp-stars">★★★★★</span> 5.0 — Based on 80 reviews</p>
+
+            <article class="bp-review">
+                <strong>Fatima Z.</strong> <span class="bp-verified">Verified Reviewer</span>
+                <p class="bp-stars">★★★★★</p>
+                <p>Very pigmented and blends really well. I'm obsessed with it.</p>
+            </article>
+            <article class="bp-review">
+                <strong>Karina Y.</strong> <span class="bp-verified">Verified Reviewer</span>
+                <p class="bp-stars">★★★★★</p>
+                <p>Those bronze tones have me imagining all the looks I'd create. It's already on my wish list.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <h3>hey beautiful,<br>let's connect</h3>
+            <form class="newsletter">
+                <input type="email" placeholder="EMAIL ADDRESS">
+                <button type="button">JOIN OUR NEWSLETTER</button>
+            </form>
+        </div>
+        <div class="footer-cols">
+            <ul>
+                <li class="footer-head">COMPANY</li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Huda's VIPs Loyalty Program</a></li>
+                <li><a href="#">Ambassador Program</a></li>
+                <li><a href="#">Affiliate Program</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            <ul>
+                <li class="footer-head">CUSTOMER SERVICE</li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Shipping and Delivery Info</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Find My Order</a></li>
+                <li><a href="#">Returns</a></li>
+            </ul>
+            <ul>
+                <li class="footer-head">LEGAL</li>
+                <li><a href="#">Terms and Conditions of Sale</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+            </ul>
+        </div>
+        <p class="copyright">© 2026 Huda Beauty, All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -44,7 +44,19 @@
             <a href="#" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a href="#" class="d-none d-md-inline" aria-label="Account"><i class="fa-regular fa-user"></i></a>
             <a href="#" class="d-none d-md-inline" aria-label="Wishlist"><i class="fa-solid fa-circle-user"></i></a>
-            <a href="checkout.html"  aria-label="Bag"><i class="fa-solid fa-bag-shopping"></i></a>
+            <div class="cart-wrap">
+  <a href="checkout.html" id="cartBtn" class="cart-link" aria-label="Bag" aria-expanded="false">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <span id="cartBadge" class="cart-badge" hidden>0</span>
+  </a>
+
+  <div id="miniCart" class="mini-cart" hidden>
+    <h4>Your bag</h4>
+    <ul id="cartList"></ul>
+    <p class="cart-total">Total: <strong id="cartTotal">$0.00</strong></p>
+    <a href="checkout.html" class="cart-checkout">CHECKOUT</a>
+  </div>
+</div>
           </div>
 
           <div class="collapse navbar-collapse hb-menu" id="hbMenu">

@@ -468,3 +468,34 @@ ul { list-style: none; margin: 0; padding: 0; }
     .field { grid-template-columns: 100px 1fr; }
     .field .msg { grid-column: 2; }
 }
+
+/* ---------- Task 3: cart badge + mini cart ---------- */
+.cart-wrap { position: relative; }
+.cart-link { position: relative; display: inline-block; }
+.cart-badge {
+    position: absolute; top: -9px; right: -12px;
+    min-width: 18px; height: 18px; padding: 0 4px; box-sizing: border-box;
+    border: 2px solid #fff; border-radius: 9px;
+    background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 700; line-height: 14px; text-align: center;
+}
+.mini-cart {
+    position: absolute; top: calc(100% + 14px); right: 0; z-index: 1060;
+    width: min(320px, 90vw); padding: 14px 16px;
+    background: #fff; color: #000; border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    font-size: 16px; font-weight: 500;
+}
+.mini-cart h4 { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+.mini-cart ul li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid #eee; }
+.mini-cart .item-name { flex: 1; font-size: 14px; line-height: 1.15; text-transform: uppercase; }
+.mini-cart .remove-btn {
+    border: 1px solid var(--accent); border-radius: 999px; background: #fff;
+    color: var(--accent); padding: 1px 10px; font-size: 13px; cursor: pointer;
+}
+.mini-cart .cart-total { margin: 10px 0; font-size: 18px; }
+.mini-cart .cart-checkout {
+    display: block; text-align: center; padding: 8px 0; border-radius: 999px;
+    background: var(--accent); color: #fff; font-weight: 700;
+}
+.p-btn:disabled { background: #999; cursor: not-allowed; }
